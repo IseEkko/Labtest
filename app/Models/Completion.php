@@ -54,7 +54,7 @@ class Completion extends Model
                 ]
 
             );
-
+            
             return $res ?
                 $res :
                 false;

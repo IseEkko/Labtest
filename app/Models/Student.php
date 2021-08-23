@@ -11,19 +11,27 @@ class Student extends Model
     protected $primaryKey = "id";
     protected $guarded = [];
 
-    public static function establish($student_name, $student_num, $student_class, $experiment_name)
+    public static function establish($student_name,$student_level, $student_spec,$student_year, $student_num, $student_class, $experiment_name,$course_name,$student_date,$student_teacher)
     {
 
         try {
-            $res = Student::create(
+             Student::create(
                 [
                     'student_name' => $student_name,
-                    'student_num' => $student_num,
+                    'student_level' => $student_level,
+                    'student_spec' => $student_spec,
+                    'student_year' => $student_year,
                     'student_class' => $student_class,
-                    'experiment_name' => $experiment_name
+                    'student_num' => $student_num,
+                    'experiment_name' => $experiment_name,
+                    'course_name' => $course_name,
+                    'student_date' => $student_date,
+                    'student_teacher' => $student_teacher
                 ]
 
             );
+            $res = Student::where('student_num','=',$student_num)
+            ->get('id');
 
             return $res ?
                 $res :
@@ -61,14 +69,24 @@ class Student extends Model
     {
         try {
 
-
-            $res = Student::where('id', '=', $student_id)
-                ->join('completion', 'studen.id', '=', 'completion.id')
+            $res = Student::
+            join('completion', 'student.id', '=', 'completion.student_id')
+            ->where('student.id', '=', $student_id)
                 ->select(
-                    'studen.student_name',
-                    'studen.student_num',
-                    'studen.student_class',
-                    'studen.grade',
+                    'student.student_name',
+                    'student.student_level',
+                    'student.student_spec',
+                    'student.student_year',
+                    'student.student_class',
+                    'student.student_num',
+                    'student.experiment_name',
+                    'student.course_name',
+                    'student.student_date',
+                    'student.student_teacher',
+
+                    'student.grade',
+
+
                     'completion.completion_1',
                     'completion.completion_2',
                     'completion.completion_3',
@@ -86,8 +104,7 @@ class Student extends Model
                     'completion.completion_pd2',
                     'completion.completion_pd3'
                     
-                )
-                ->get();
+                )->get();
 
 
 

@@ -14,11 +14,17 @@ class ExperimentController extends Controller
     {
 
         $student_name = $request['student_name'];
-        $student_num = $request['student_num'];
+        $student_level = $request['student_level'];
+        $student_spec = $request['student_spec'];
+        $student_year = $request['student_year'];
         $student_class = $request['student_class'];
+        $student_num = $request['student_num'];
         $experiment_name = $request['experiment_name'];
+        $course_name = $request['course_name'];
+        $student_date = $request['student_date'];
+        $student_teacher = $request['student_teacher'];
 
-        $res = Student::establish($student_name, $student_num, $student_class, $experiment_name);
+        $res = Student::establish($student_name,$student_level, $student_spec,$student_year, $student_num, $student_class, $experiment_name,$course_name,$student_date,$student_teacher);
 
         return $res ?
             json_success('操作成功!', $res, 200) :
@@ -73,43 +79,59 @@ class ExperimentController extends Controller
 
         $grade = 0;
 
-        if ((strlen($completion_1 - (int)$completion_1) - 2) == 3) {
-            $grade += 6;
+        if (strlen(substr(strrchr($completion_1,"."),1)) == 3) {
+            $grade += 5;
+           
         }
         if ((strlen($completion_2 - (int)$completion_2) - 2) == 3) {
-            $grade += 6;
+            $grade += 5;
+           
         }
         if ((strlen($completion_3 - (int)$completion_3) - 2) == 3) {
-            $grade += 6;
+            $grade += 5;
+           
         }
         if ((strlen($completion_4 - (int)$completion_4) - 2) == 3) {
-            $grade += 6;
+            $grade += 5;
+           
         }
         if ((strlen($completion_5 - (int)$completion_5) - 2) == 3) {
-            $grade += 6;
+            $grade += 5;
+            
         }
         if ((strlen($completion_6 - (int)$completion_6) - 2) == 3) {
-            $grade += 6;
+            $grade += 5;
+           
         }
-        if ($completion_l1 == ($completion_4 - $completion_1)) {
-            $grade += 6;
+        if ($completion_l1 == sprintf("%.3f",($completion_4 - $completion_1))) {
+            $grade += 5;
+            
         }
-        if ($completion_l2 == ($completion_5 - $completion_2)) {
-            $grade += 6;
+        if ($completion_l2 == sprintf("%.3f",($completion_5 - $completion_2))) {
+            $grade += 5;
+            
         }
-        if ($completion_l3 == ($completion_6 - $completion_3)) {
-            $grade += 6;
+        if ($completion_l3 == sprintf("%.3f",($completion_6 - $completion_3))) {
+            $grade += 5;
+            
         }
         $ls = $completion_l1 + $completion_l2 + $completion_l3;
-        if ($completion_m == (180 / $ls)) {
-            $grade += 6;
+        if($ls == sprintf("%.3f",($completion_4 - $completion_1))+sprintf("%.3f",($completion_5 - $completion_2))+sprintf("%.3f",($completion_6 - $completion_3))){
+            if ($completion_m == sprintf("%.3f",(180 / $ls))) {
+                $grade += 5;
+                
+            }
+            if ($completion_d == sprintf("%.3f", 0.000589 * $completion_m * 0.5)) {
+                $grade += 20;
+               
+            }
         }
-        if ($completion_d == sprintf("%.3f", 0.01178 * $completion_m)) {
-            $grade += 10;
-        }
+        
 
 
+        
         $grade = $grade + $grade_xp;
+
 
 
         $res2 = Student::grade($student_id, $grade);
@@ -130,45 +152,61 @@ class ExperimentController extends Controller
 
 
         $student_id = $request['student_id'];
-
+  
 
         $student_a = Student::show($student_id);
 
         $student_b = json_decode($student_a);
+        $completion_1 = $student_b[0]->completion_1;
+        $completion_2 = $student_b[0]->completion_2;
+        $completion_3 = $student_b[0]->completion_3;
+        $completion_4 = $student_b[0]->completion_4;
+        $completion_5 = $student_b[0]->completion_5;
+        $completion_6 = $student_b[0]->completion_6;
+        $completion_l1 = $student_b[0]->completion_l1;
+        $completion_l2 = $student_b[0]->completion_l2;
+        $completion_l3 = $student_b[0]->completion_l3;
+        $completion_m = $student_b[0]->completion_m;
+        $completion_d = $student_b[0]->completion_d;
+        $completion_xz1 = $student_b[0]->completion_xz1;
+        $completion_xz2 = $student_b[0]->completion_xz1;
+        $completion_pd1 = $student_b[0]->completion_pd1;
+        $completion_pd2 = $student_b[0]->completion_pd2;
+        $completion_pd3 = $student_b[0]->completion_pd3;
 
-        $completion_1 = $student_b->completion_1;
-        $completion_2 = $student_b->completion_2;
-        $completion_3 = $student_b->completion_3;
-        $completion_4 = $student_b->completion_4;
-        $completion_5 = $student_b->completion_5;
-        $completion_6 = $student_b->completion_6;
-        $completion_l1 = $student_b->completion_l1;
-        $completion_l2 = $student_b->completion_l2;
-        $completion_l3 = $student_b->completion_l3;
-        $completion_m = $student_b->completion_m;
-        $completion_d = $student_b->completion_d;
-        $completion_xz1 = $student_b->completion_xz1;
-        $completion_xz2 = $student_b->completion_xz1;
-        $completion_pd1 = $student_b->completion_pd1;
-        $completion_pd2 = $student_b->completion_pd2;
-        $completion_pd3 = $student_b->completion_pd3;
-
-        $student_name = $student_b->student_name;
-        $student_num = $student_b->student_num;
-        $student_class = $student_b->student_class;
-        $grade = $student_b->grade;
+        
 
 
 
+        $student_name = $student_b[0]->student_name;
+        $student_level = $student_b[0]->student_level;
+        $student_spec = $student_b[0]->student_spec;
+        $student_year = $student_b[0]->student_year;
+        $student_class = $student_b[0]->student_class;
+        $student_num = $student_b[0]->student_num;
+        $experiment_name = $student_b[0]->experiment_name;
+        $course_name = $student_b[0]->course_name;
+        $student_date = $student_b[0]->student_date;
+        $student_teacher = $student_b[0]->student_teacher;
+        $grade = $student_b[0]->grade;
 
 
 
 
         $res = view('invoice', [
             'name' => $student_name,
+            'student_level' => $student_level,
+            'student_spec' => $student_spec,
+            'student_year' => $student_year,
+            'experiment_name' => $experiment_name,
+            'course_name' => $course_name,
+            'student_date' => $student_date,
+            'student_teacher' => $student_teacher,
             'student_num' => $student_num,
             'student_class' => $student_class,
             'grade' => $grade,
+
+
             'completion_1' => $completion_1,
             'completion_2' => $completion_2,
             'completion_3' => $completion_3,
@@ -191,12 +229,13 @@ class ExperimentController extends Controller
 
 
         $mpdf = new Mpdf\Mpdf(['utf-8', 'A4', 16, '', 10, 10, 15, 15]);
-        $mpdf->useAdobeCJK = TRUE;
+        
+    
         $mpdf->showImageErrors = true;
 
         $mpdf->WriteHTML($res);
 
-        $mpdf->Output('实验报告', "i");
+        $mpdf->Output('实验报告.pdf', "D");
 
         exit;
     }
