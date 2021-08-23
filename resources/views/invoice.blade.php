@@ -10,18 +10,71 @@
             </head>
             <body>
     
-                    <div  style= "width:556px;height:1123px;margin:0 auto;padding:0 100px" >
+                    <div  style= "width:556px;margin:0 auto;padding:0 100px" >
+                        <!-- 页眉 -->
+                    <div style="display: flex;position: relative;height: 60px;border-bottom: 1px solid #464545;">
+                        <div>
+                            <img src="https://s3.bmp.ovh/imgs/2021/08/0bf5497e7adffd54.png" style="height: 40px;"/>
+                        </div>
+                        <span style="position: absolute;left: 50%;top:50%;height: 50%;transform: translate(-50%,-50%);color: #898989;font-size: 14px;">《{{$name}}》学生实验报告</span>
+                    </div>
+                    <!-- 标题 -->
+                    <div style="margin: 0 auto;text-align: center;padding-bottom: 20px;padding-top: 3px;">
+                        <span style="font-size: 23px;">《{{$name}}》学生实验（项目）报告</span>
+                    </div>
+                    <!-- 学生信息 -->
+                    <h3>一、基本信息</h3>
+                    <table border="1" cellpadding = "5" cellspacing = "0" style="margin: 0 auto;">
+                        <tr>
+                            <td>实验项目名称</td>
+                            <td colspan="3">{{$experiment_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>课程名称</td>
+                            <td>{{$course_name}}</td>
+                            <td>学生层次</td>
+                            <td>{{$student_level}}</td>
+                        </tr>
+                        <tr>
+                            <td>学生专业</td>
+                            <td>{{$student_spec}}</td>
+                            <td>学生年级</td>
+                            <td>{{$student_year}}</td>
+                        </tr>
+                        <tr>
+                            <td>学生班级</td>
+                            <td>{{$student_class}}</td>
+                            <td>学生学号</td>
+                            <td>{{$student_num}}</td>
+                        </tr>
+                        <tr>
+                            <td>学生姓名</td>
+                            <td>{{$name}}</td>
+                            <td>完成日期</td>
+                            <td>{{$student_date}}</td>
+                        </tr>
+                        <tr>
+                            <td>指导教师</td>
+                            <td colspan="3">{{$student_teacher}}</td>
+                        </tr>
+                    </table>
+                    <span style="color: red;">以下内容应为学生项目成果，由指导教师自行定义。</span>
+                    <!-- 实验目的 -->
+                    <h3>二、实验目的</h3>
+                    <!-- 实验步骤 -->
+                    <h3>三、实验步骤（及实验数据）</h3>
 
 
-                    
-                    <h2>实验项目     尖劈测细丝直径</h2>
-                    <p style="text-align:center">姓 名:  {{$name}}     学号:  {{$student_num}}  班级:{{$student_class}}     成绩:{{$grade}}</p>
-    
-                    <h3>一、实验目的</h3>
+
+
+
+
+                    <!-- 原视图 -->
+                    <h3>二、实验目的</h3>
                     <p>学习利用尖劈测量细丝直径。</p>
-                    <h3>二、实验仪器与设备</h3>
+                    <h3>三、实验仪器与设备</h3>
                     <p>读数显微镜、钠光灯、电源、牛顿环装置。</p>
-                    <h3>三、实验原理</h3>
+                    <h3>四、实验原理</h3>
                     <p style="text-align:center">
                         <img src="https://isekko-1306311182.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E7%89%871.jpg"  height="150" width="200">
                          
@@ -73,7 +126,7 @@
                         d=N<span>`λ/2`</span>=LK<span>`λ/2`</span>=L<span>`[mλ]/[△l2]`</span>(5)
                     </p>
     
-                    <h3>三、实验原理</h3>
+                    <h3>四、实验原理</h3>
                     <p style="text-align:center">
                         <img src="https://isekko-1306311182.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E7%89%872.jpg" height="150" width="200">
                          {{-- <img src="https://isekko-1306311182.cos.ap-nanjing.myqcloud.com/art/7EzlMb4tOYYrE915q0V58j57qVJ5ax0qPbkW4Sz5.png" height="150" width="200"> --}}
@@ -101,7 +154,7 @@
                  </p>
     
     
-                 <h3>五、实验数据记录与处理</h3>
+                 <h3>六、实验数据记录与处理</h3>
                  <p>λ=589nm   L=0.04m </p>
                  <table border="1" cellpadding = "15" cellspacing = "0">
                     <tr>
@@ -124,14 +177,14 @@
                     </tr>
                     <tr>
                         <td>60条暗条纹的宽度(mm)</td>
-                        <td>{{$completion_l1}}</td>
-                        <td>{{$completion_l2}}</td>
-                        <td>{{$completion_l3}}</td>
+                        <td colspan="2">{{$completion_l1}}</td>
+                        <td colspan="2">{{$completion_l2}}</td>
+                        <td colspan="2">{{$completion_l3}}</td>
                       
                     </tr>
                     <tr>
                         <td>m/△l=3x60/L<sub>1</sub>+L<sub>2</sub>+L<sub>3</sub></td>
-                        <td>{{$completion_m}}</td>
+                        <td colspan="6">{{$completion_m}}</td>
                         
                     </tr>
                  </table>
@@ -158,13 +211,13 @@
                     
                     1. 牛顿环和披肩分别属于等厚干涉和等倾干涉 。
                 </br>
-                    答案 {{$completion_pd1}}
+                    答案 {{$completion_pd1}}duykgqwekdfweiuydcgfiwueydfgiuyeqgdfiueqfwgd啊觉得胡歌啊的高科技全文啊都无可取代个iu前往德国不定期为该队千万个度诶我UI为法国iu高端复刻我就去搞丢我企鹅打鬼王大哥iu去围观丢的护卫哦全国地区恶搞的
                     </br>
                     2. 劈尖实验，视场很亮，但是调不出干涉条纹，其原因可能是反光玻璃片放反。
                 </br>
                     答案 {{$completion_pd2}}
                 </br>
-                    3. 劈尖实验中，若发现视场半明半暗，则烟瘾是光源亮度不够。
+                    3. 劈尖实验中，若发现视场半明半暗，则原因是光源亮度不够。
                 </br>
                     答案：{{$completion_pd3}}
                  </p>
