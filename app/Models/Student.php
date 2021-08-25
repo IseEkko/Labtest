@@ -42,7 +42,7 @@ class Student extends Model
         }
     }
 
-    public static function grade($student_id, $grade)
+    public static function grade($student_id, $grade,$grade_xp)
     {
 
 
@@ -51,7 +51,7 @@ class Student extends Model
 
             $res = Student::where('student.id', '=', $student_id)
 
-                ->update(['grade' => $grade]);
+                ->update(['grade' => $grade,'grade_xp' => $grade_xp]);
 
 
 
@@ -85,6 +85,7 @@ class Student extends Model
                     'student.student_teacher',
 
                     'student.grade',
+                    'student.grade_xp',
 
 
                     'completion.completion_1',
