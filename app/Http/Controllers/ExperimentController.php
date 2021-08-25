@@ -134,7 +134,7 @@ class ExperimentController extends Controller
 
 
 
-        $res2 = Student::grade($student_id, $grade);
+        $res2 = Student::grade($student_id, $grade,$grade_xp);
 
 
 
@@ -189,6 +189,7 @@ class ExperimentController extends Controller
         $student_date = $student_b[0]->student_date;
         $student_teacher = $student_b[0]->student_teacher;
         $grade = $student_b[0]->grade;
+        $grade_xp = $student_b[0]->grade_xp;
 
 
 
@@ -205,6 +206,9 @@ class ExperimentController extends Controller
             'student_num' => $student_num,
             'student_class' => $student_class,
             'grade' => $grade,
+            'grade_xp' => $grade_xp,
+            'grade_tk' => ($grade - $grade_xp),
+             
 
 
             'completion_1' => $completion_1,
@@ -235,7 +239,7 @@ class ExperimentController extends Controller
 
         $mpdf->WriteHTML($res);
 
-        $mpdf->Output('实验报告.pdf', "D");
+        $mpdf->Output('实验报告.pdf', "I");
 
         exit;
     }
