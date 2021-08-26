@@ -211,22 +211,22 @@ class ExperimentController extends Controller
              
 
 
-            'completion_1' => $completion_1,
-            'completion_2' => $completion_2,
-            'completion_3' => $completion_3,
-            'completion_4' => $completion_4,
-            'completion_5' => $completion_5,
-            'completion_6' => $completion_6,
-            'completion_l1' => $completion_l1,
-            'completion_l2' => $completion_l2,
-            'completion_l3' => $completion_l3,
-            'completion_m' => $completion_m,
-            'completion_d' => $completion_d,
-            'completion_xz1' => $completion_xz1,
-            'completion_xz2' => $completion_xz2,
-            'completion_pd1' => $completion_pd1,
-            'completion_pd2' => $completion_pd2,
-            'completion_pd3' => $completion_pd3,
+            'completion_1' => sprintf("%.3f",$completion_1),
+            'completion_2' => sprintf("%.3f",$completion_2),
+            'completion_3' => sprintf("%.3f",$completion_3),
+            'completion_4' => sprintf("%.3f",$completion_4),
+            'completion_5' => sprintf("%.3f",$completion_5),
+            'completion_6' => sprintf("%.3f",$completion_6),
+            'completion_l1' => sprintf("%.3f",$completion_l1),
+            'completion_l2' => sprintf("%.3f",$completion_l2),
+            'completion_l3' => sprintf("%.3f",$completion_l3),
+            'completion_m' => sprintf("%.3f",$completion_m),
+            'completion_d' => sprintf("%.3f",$completion_d),
+            'completion_xz1' => sprintf("%.3f",$completion_xz1),
+            'completion_xz2' => sprintf("%.3f",$completion_xz2),
+            'completion_pd1' => sprintf("%.3f",$completion_pd1),
+            'completion_pd2' => sprintf("%.3f",$completion_pd2),
+            'completion_pd3' => sprintf("%.3f",$completion_pd3),
 
         ]);
 
