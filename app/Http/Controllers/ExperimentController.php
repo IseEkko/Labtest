@@ -222,11 +222,11 @@ class ExperimentController extends Controller
             'completion_l3' => sprintf("%.3f",$completion_l3),
             'completion_m' => sprintf("%.3f",$completion_m),
             'completion_d' => sprintf("%.3f",$completion_d),
-            'completion_xz1' => sprintf("%.3f",$completion_xz1),
-            'completion_xz2' => sprintf("%.3f",$completion_xz2),
-            'completion_pd1' => sprintf("%.3f",$completion_pd1),
-            'completion_pd2' => sprintf("%.3f",$completion_pd2),
-            'completion_pd3' => sprintf("%.3f",$completion_pd3),
+            'completion_xz1' => $completion_xz1,
+            'completion_xz2' => $completion_xz2,
+            'completion_pd1' => $completion_pd1,
+            'completion_pd2' => $completion_pd2,
+            'completion_pd3' => $completion_pd3,
 
         ]);
 
