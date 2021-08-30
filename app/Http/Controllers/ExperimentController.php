@@ -35,17 +35,17 @@ class ExperimentController extends Controller
     public function completion(Request $request)
     {
 
-        $completion_1 = $request['completion_1'];
-        $completion_2 = $request['completion_2'];
-        $completion_3 = $request['completion_3'];
-        $completion_4 = $request['completion_4'];
-        $completion_5 = $request['completion_5'];
-        $completion_6 = $request['completion_6'];
-        $completion_l1 = $request['completion_l1'];
-        $completion_l2 = $request['completion_l2'];
-        $completion_l3 = $request['completion_l3'];
-        $completion_m = $request['completion_m'];
-        $completion_d = $request['completion_d'];
+        $completion_1 = sprintf("%.3f",$request['completion_1']);
+        $completion_2 = sprintf("%.3f",$request['completion_2']);
+        $completion_3 = sprintf("%.3f",$request['completion_3']);
+        $completion_4 = sprintf("%.3f",$request['completion_4']);
+        $completion_5 = sprintf("%.3f",$request['completion_5']);
+        $completion_6 = sprintf("%.3f",$request['completion_6']);
+        $completion_l1 = sprintf("%.3f",$request['completion_l1']);
+        $completion_l2 = sprintf("%.3f",$request['completion_l2']);
+        $completion_l3 = sprintf("%.3f",$request['completion_l3']);
+        $completion_m = sprintf("%.3f",$request['completion_m']);
+        $completion_d = sprintf("%.3f",$request['completion_d']);
         $completion_xz1 = $request['completion_xz1'];
         $completion_xz2 = $request['completion_xz2'];
         $completion_pd1 = $request['completion_pd1'];
@@ -79,50 +79,64 @@ class ExperimentController extends Controller
 
         $grade = 0;
 
+
         if (strlen(substr(strrchr($completion_1,"."),1)) == 3) {
             $grade += 5;
            
         }
-        if ((strlen($completion_2 - (int)$completion_2) - 2) == 3) {
+        if (strlen(substr(strrchr($completion_2,"."),1)) == 3) {
             $grade += 5;
            
         }
-        if ((strlen($completion_3 - (int)$completion_3) - 2) == 3) {
+        if (strlen(substr(strrchr($completion_3,"."),1)) == 3) {
             $grade += 5;
            
         }
-        if ((strlen($completion_4 - (int)$completion_4) - 2) == 3) {
+        
+        if (strlen(substr(strrchr($completion_4,"."),1)) == 3) {
             $grade += 5;
            
         }
-        if ((strlen($completion_5 - (int)$completion_5) - 2) == 3) {
+        if (strlen(substr(strrchr($completion_5,"."),1)) == 3) {
             $grade += 5;
             
         }
-        if ((strlen($completion_6 - (int)$completion_6) - 2) == 3) {
+        if (strlen(substr(strrchr($completion_6,"."),1)) == 3) {
             $grade += 5;
            
         }
+
         if ($completion_l1 == sprintf("%.3f",($completion_4 - $completion_1))) {
             $grade += 5;
             
+        }else if($completion_l1 == sprintf("%.3f",(-($completion_4 - $completion_1)))){
+            $grade += 5;
         }
+
         if ($completion_l2 == sprintf("%.3f",($completion_5 - $completion_2))) {
             $grade += 5;
             
+        }else if($completion_l2 == sprintf("%.3f",(-($completion_5 - $completion_2)))){
+            $grade += 5;
         }
+
         if ($completion_l3 == sprintf("%.3f",($completion_6 - $completion_3))) {
             $grade += 5;
             
+        }else if($completion_l3 == sprintf("%.3f",(-($completion_6 - $completion_3)))){
+            $grade += 5;
         }
+
         $ls = $completion_l1 + $completion_l2 + $completion_l3;
         if($ls == sprintf("%.3f",($completion_4 - $completion_1))+sprintf("%.3f",($completion_5 - $completion_2))+sprintf("%.3f",($completion_6 - $completion_3))){
             if ($completion_m == sprintf("%.3f",(180 / $ls))) {
                 $grade += 5;
+               
                 
             }
-            if ($completion_d == sprintf("%.3f", 0.000589 * $completion_m * 0.5)) {
+            if ($completion_d == sprintf("%.3f", 0.000589 * $completion_m * 20)) {
                 $grade += 20;
+                
                
             }
         }
