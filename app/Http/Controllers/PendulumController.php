@@ -32,15 +32,15 @@ class PendulumController extends Controller
         $da = sprintf("%.3f",$request['da']);
         $ta = sprintf("%.2f",$request['ta']);
         $l6 = sprintf("%.2f",$request['l6']);
-        $t6 = sprintf("%.3f",$request['t6']);
+        $t6 = sprintf("%.2f",$request['t6']);
         $g   =sprintf("%.1f",$request['g']);
         $n1  =sprintf("%.1f",$request['n1']);
         $n2  =sprintf("%.2f",$request['n2']);
         $n3  =sprintf("%.2f",$request['n3']);
         $n4  =sprintf("%.2f",$request['n4']);
-        $n5  =sprintf("%.2f",$request['n5']);
+        $n5  =sprintf("%.1f",$request['n5']);
         $n6  =sprintf("%.1f",$request['n6']);
-        $y1  =sprintf("%.2f",$request['y1']);
+        $y1  =sprintf("%.1f",$request['y1']);
         $y2  =sprintf("%.1f",$request['y2']);
         $xz1  =$request['xz1'];
         $xz2  =$request['xz2'];
@@ -137,52 +137,51 @@ class PendulumController extends Controller
             $grade += 5;
         }
 
-
         if(strlen(substr(strrchr($ta,"."),1)) == 2 ){
             $grade += 5;
         }
 
 
-        if($l6==$da/2+(float)$la){
+        if($l6== sprintf("%.2f",($da/2+(float)$la))){
             $grade += 5;
         }
-        if($t6==$ta/50){
+        if($t6== sprintf("%.2f",($ta/50))){
             $grade += 5;
         }
-        if($g==4*(3.14*3.14)*$la/($ta*$ta)){
+        if($g== sprintf("%.1f",(4*(3.14*3.14)*$la/($ta*$ta)))){
             $grade += 5;
         }
         $arr4= array($l1-$la,$l2-$la,$l3-$la,$l4-$la,$l5-$la);
         $la12 =array_sum($arr4)/5;
-        if($n1==$la12){
+        if($n1== sprintf("%.1f",($la12))){
             $grade += 5;
         }
 
-        if($n2==$la12/$la){
+        if($n2== sprintf("%.2f",($la12/$la))){
             $grade += 5;
         }
 
         $arr5= array($t1-$ta,$t2-$ta,$t3-$ta,$t4-$ta,$t5-$ta);
         $ta12 =array_sum($arr5)/5;
-        if($n3==$ta12){
+        if($n3== sprintf("%.2f",($ta12))){
             $grade += 5;
         }
 
 
-        if($n4==$ta12/$ta){
+        if($n4== sprintf("%.2f",($ta12/$ta))){
             $grade += 5;
         }
         $n55=$la12/$la+2*($ta12/$ta);
-        if($n5==$n55){
+        if($n5== sprintf("%.1f",($n55))){
             $grade += 5;
         }
-        if($n6==$g*$n55){
+        if($n6== sprintf("%.1f",($g*$n55))){
             $grade += 5;
         }
-        if($y1==4*(3.14*3.14)*$la/($ta*$ta)){
+        if($y1== sprintf("%.1f",(4*(3.14*3.14)*$la/($ta*$ta)))){
             $grade += 5;
         }
-        if($y2==$g*$n55){
+        if($y2== sprintf("%.1f",($g*$n55))){
             $grade += 5;
         }
 
@@ -192,6 +191,7 @@ class PendulumController extends Controller
 
         $res['res1'] = $res1;
         $res['res2'] = $res2;
+
         return $res ?
             json_success('操作成功!', null, 200) :
             json_fail('操作失败!', null, 100);
