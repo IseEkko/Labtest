@@ -104,7 +104,7 @@ class Student extends Model
                     'completion.completion_pd1',
                     'completion.completion_pd2',
                     'completion.completion_pd3'
-                    
+
                 )->get();
 
 
@@ -119,4 +119,70 @@ class Student extends Model
 
         echo 1;
     }
+
+    public static function show3($student_id)
+    {
+        try {
+            $res = Student::
+            join('completion3', 'student.id', '=', 'completion3.student_id')
+                ->where('student.id', '=', $student_id)
+                ->select(
+                    'student.student_name',
+                    'student.student_level',
+                    'student.student_spec',
+                    'student.student_year',
+                    'student.student_class',
+                    'student.student_num',
+                    'student.experiment_name',
+                    'student.course_name',
+                    'student.student_date',
+                    'student.student_teacher',
+
+                    'student.grade',
+                    'student.grade_xp',
+
+                    'completion3.l1',
+                    'completion3.l2',
+                    'completion3.l3',
+                    'completion3.l4',
+                    'completion3.l5',
+                    'completion3.d1',
+                    'completion3.d2',
+                    'completion3.d3',
+                    'completion3.d4',
+                    'completion3.d5',
+                    'completion3.t1',
+                    'completion3.t2',
+                    'completion3.t3',
+                    'completion3.t4',
+                    'completion3.t5',
+                    'completion3.la',
+                    'completion3.da',
+                    'completion3.ta',
+                    'completion3.l6',
+                     'completion3.t6',
+                    'completion3.g',
+                    'completion3.n1',
+                    'completion3.n2',
+                    'completion3.n3',
+                    'completion3.n4',
+                    'completion3.n5',
+                    'completion3.n6',
+                    'completion3.y1',
+                    'completion3.y2',
+                    'completion3.xz1',
+                    'completion3.xz2'
+                )->get();
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
+
+        echo 1;
+    }
+
 }
