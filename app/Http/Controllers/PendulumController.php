@@ -129,15 +129,19 @@ class PendulumController extends Controller
             $grade += 1;
         }
 
-        if(strlen(substr(strrchr($la,"."),1)) == 2 ){
+        $arrla= array($l1,$l2,$l3,$l4,$l5);
+        $la12 =array_sum($arrla)/5;
+        if($la== sprintf("%.2f",($la12))){
             $grade += 5;
         }
-
-        if(strlen(substr(strrchr($da,"."),1)) == 3 ){
+        $arrda= array($d1,$d2,$d3,$d4,$d5);
+        $da12 =array_sum($arrda)/5;
+        if($da== sprintf("%.3f",($da12))){
             $grade += 5;
         }
-
-        if(strlen(substr(strrchr($ta,"."),1)) == 2 ){
+        $arrta= array($t1,$t2,$t3,$t4,$t5);
+        $ta12 =array_sum($arrta)/5;
+        if($ta== sprintf("%.2f",($ta12))){
             $grade += 5;
         }
 
